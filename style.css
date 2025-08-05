@@ -1,0 +1,226 @@
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff2ced;
+            --neon-purple: #8a2be2;
+            --dark-bg: #0f0f18;
+        }
+        
+
+
+        
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.3); /* Optional: لتغميق الفيديو والخطوط تبان فوقه */
+}
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .player-info {
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(143, 63, 248, 0.2);
+            transition: all 0.3s;
+        }
+
+        .player-info.active {
+            box-shadow: 0 0 25px var(--neon-pink);
+            background: rgba(255, 44, 237, 0.1);
+        }
+
+        .score {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+        }
+
+        .cell {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+
+        .cell:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(143, 63, 248, 0.3);
+        }
+
+        .cell[data-value="X"]::before, .cell[data-value="X"]::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 6px;
+            background-color: var(--neon-blue);
+            transform: rotate(45deg);
+            border-radius: 3px;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .cell[data-value="X"]::after {
+            transform: rotate(-45deg);
+        }
+
+        .cell[data-value="O"]::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border: 6px solid var(--neon-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(90deg, var(--neon-purple), #5a01ff);
+            color: white;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        .game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 24, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .game-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .overlay-content {
+            background: var(--dark-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 30px var(--neon-purple);
+            max-width: 80%;
+        }
+
+        .mode-select {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .winner-display {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px white;
+        }
+
+        @media (max-width: 500px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .game-board {
+                width: 260px;
+                height: 260px;
+            }
+            
+            .player-info {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }

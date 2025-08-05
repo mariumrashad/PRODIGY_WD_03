@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic-Tac-Toe</title>    
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+  <source src="./background.mp4" type="video/mp4">
+</video>
+
+    <div class="game-overlay" id="modeOverlay">
+        <div class="overlay-content">
+            <h2>Select Game Mode</h2>
+            <div class="mode-select">
+                <button class="mode-btn" data-mode="multiplayer">Multiplayer (2 Players)</button>
+                <button class="mode-btn" data-mode="ai">Play Against AI</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-overlay" id="resultOverlay">
+        <div class="overlay-content">
+            <h2 class="winner-display" id="winnerText">Player X Wins!</h2>
+            <button id="playAgainBtn">Play Again</button>
+            <button id="changeModeBtn">Change Mode</button>
+        </div>
+    </div>
+
+    <div class="game-container" id="gameContainer">
+        
+        <h1 class="title">Tic-Tac-Toe</h1>
+        
+        <div class="game-info">
+            <div class="player-info" id="playerXInfo">
+                Player X
+                <div class="score">Score: <span id="playerXScore">0</span></div>
+            </div>
+            <div class="player-info" id="playerOInfo">
+                Player O
+                <div class="score">Score: <span id="playerOScore">0</span></div>
+            </div>
+        </div>
+        
+        <div class="game-board" id="gameBoard">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="restartBtn">Restart Game</button>
+            <button id="changeModeBtn2">Change Mode</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
